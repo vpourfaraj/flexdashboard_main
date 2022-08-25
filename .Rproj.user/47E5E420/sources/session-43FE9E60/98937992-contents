@@ -1,0 +1,59 @@
+---
+title: "check"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(dplyr)
+library(plotly)
+library(googlesheets4)
+library(ggplot2)
+```
+
+```{r data}
+landingsdata <- read_sheet("https://docs.google.com/spreadsheets/d/13ywDT-n-pgVAJQWhqOHbdYcCemehQEH00WXGjJnMUYM/edit?usp=sharing")
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Timeseries of American lobster landings in Canada
+
+```{r}
+landingsgraph<- ggplot(landingsdata, aes(x=Year, y=landings)) +
+  geom_bar(stat="identity", fill="coral2") +
+  labs(x= "", y="Volume in metrci tonnes") +
+  scale_x_discrete(breaks = seq(1893, 2020, by = 7)) + 
+  theme(
+    panel.border = element_blank(),  
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.background = element_blank(),
+    axis.line = element_line(colour = "black")) +
+  theme(axis.text.x = element_text(size= 9, angle = 270, hjust = 0.75))
+
+ggplotly(landingsgraph) #converts it to plot-ly object
+##to save an object of plot_ly 
+#saveWidget(widget = p, file = "figure.html", selfcontained = TRUE)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B to be added
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
