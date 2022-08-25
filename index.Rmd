@@ -19,7 +19,7 @@ landingsdata <- read_sheet("https://docs.google.com/spreadsheets/d/13ywDT-n-pgVA
 
 ```
 
-Column {data-width=750}
+Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Timeseries of American lobster landings in Canada
